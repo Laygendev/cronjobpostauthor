@@ -31,8 +31,20 @@ class Plugin_Jungle_Admin_News {
 	 */
     const URL = 'https://jsonplaceholder.typicode.com/posts';
 
+    /**
+	 * The POST TYPE name.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $POST_TYPE    The string defined the post type name.
+	 */
     const POST_TYPE = 'news';
 
+    /**
+     * Get post by the post name.
+     * 
+     * @since    1.0.0
+     */
     private function get_post_by_name( $name ) {
         $query = new WP_Query(array(
             "post_type" => self::POST_TYPE,
@@ -57,6 +69,11 @@ class Plugin_Jungle_Admin_News {
         return date( 'Y-m-d H:i:s', $val );
     }
 
+    /**
+     * Prepares 100 random dates and shuffle it for more random.
+     * 
+     * @since    1.0.0
+     */
     private function prepare_dates($number) {
         // For make better random date, generate an array and shuffle it.
         $current_date     = current_time( 'mysql' );

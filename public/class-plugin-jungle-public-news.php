@@ -43,6 +43,11 @@ class Plugin_Jungle_Public_News {
 		register_post_type( 'news', $args );
     }
 
+	/**
+     * Display the home page, called by a shortcode. 
+     * 
+     * @since    1.0.0
+     */
 	public function display() {
 		$posts = get_posts(array(
 			'post_type'      => 'news',
@@ -66,6 +71,11 @@ class Plugin_Jungle_Public_News {
 		return $content;
 	}
 
+	/**
+     * Ajax method, load news by author id and return the view.
+     * 
+     * @since    1.0.0
+     */
 	public function load_by_author_id() {
 		check_ajax_referer( 'pj_news_by_author_id' );
 
