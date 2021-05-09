@@ -117,10 +117,25 @@ class Plugin_Jungle {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-plugin-jungle-admin.php';
 
 		/**
+		 * The class responsible for defining all actions controls users and their data.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-plugin-jungle-admin-users.php';
+
+		/**
+		 * The class responsible for defining all actions controls news and their data.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-plugin-jungle-admin-news.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-plugin-jungle-public.php';
+
+		/**
+		 * The class init news post type and other things about news in the front.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-plugin-jungle-public-news.php';
 
 		$this->loader = new Plugin_Jungle_Loader();
 
@@ -153,10 +168,14 @@ class Plugin_Jungle {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Plugin_Jungle_Admin( $this->get_plugin_jungle(), $this->get_version() );
+		$plugin_admin_users = new Plugin_Jungle_Admin_Users();
+		$plugin_admin_news = new Plugin_Jungle_Admin_News();
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'cron_update_users', $plugin_admin_users, 'cron_update_users' );
+		$this->loader->add_action( 'cron_update_news', $plugin_admin_news, 'cron_update_news' );
 	}
 
 	/**
@@ -169,10 +188,18 @@ class Plugin_Jungle {
 	private function define_public_hooks() {
 
 		$plugin_public = new Plugin_Jungle_Public( $this->get_plugin_jungle(), $this->get_version() );
+		$plugin_news = new Plugin_Jungle_Public_News();
+
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'init', $plugin_news, 'init' );
+
+		$this->loader->add_action( 'wp_ajax_pj_news_by_author_id', $plugin_news, 'load_by_author_id' );
+		$this->loader->add_action( 'wp_ajax_nopriv_pj_news_by_author_id', $plugin_news, 'load_by_author_id' );
+
+		$this->loader->add_shortcode( 'display_news', $plugin_news, 'display' );
 	}
 
 	/**
