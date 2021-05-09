@@ -3,7 +3,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       http://example.com
+ * @link       https://jimmylatour.fr
  * @since      1.0.0
  *
  * @package    Plugin_Jungle
@@ -18,7 +18,7 @@
  *
  * @package    Plugin_Jungle
  * @subpackage Plugin_Jungle/admin
- * @author     Your Name <email@example.com>
+ * @author     Jimmy L <latour.jimmy@gmail.com>
  */
 class Plugin_Jungle_Public_News {
 

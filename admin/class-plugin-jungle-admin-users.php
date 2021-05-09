@@ -3,7 +3,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       http://example.com
+ * @link       https://jimmylatour.fr
  * @since      1.0.0
  *
  * @package    Plugin_Jungle
@@ -18,7 +18,7 @@
  *
  * @package    Plugin_Jungle
  * @subpackage Plugin_Jungle/admin
- * @author     Your Name <email@example.com>
+ * @author     Jimmy L <latour.jimmy@gmail.com>
  */
 class Plugin_Jungle_Admin_Users {
 
@@ -98,11 +98,12 @@ class Plugin_Jungle_Admin_Users {
 
             $user = new WP_User( $user_id );
 
-            $user->user_email = $email;
-            $user->user_login = $username;
-            $user->user_url   = $website;
-            $user->first_name = ! empty( $splitted_name[0] ) ? $splitted_name[0] : '';
-            $user->last_name  = ! empty( $splitted_name[1] ) ? $splitted_name[1] : '';
+            $user->user_email   = $email;
+            $user->user_login   = $username;
+            $user->user_url     = $website;
+            $user->first_name   = ! empty( $splitted_name[0] ) ? $splitted_name[0] : '';
+            $user->last_name    = ! empty( $splitted_name[1] ) ? $splitted_name[1] : '';
+            $user->display_name = $name;
 
             if ($user->ID == 0) {
                 // Is new user.

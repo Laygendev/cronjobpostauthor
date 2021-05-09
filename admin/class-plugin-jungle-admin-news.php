@@ -3,7 +3,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       http://example.com
+ * @link       https://jimmylatour.fr
  * @since      1.0.0
  *
  * @package    Plugin_Jungle
@@ -18,7 +18,7 @@
  *
  * @package    Plugin_Jungle
  * @subpackage Plugin_Jungle/admin
- * @author     Your Name <email@example.com>
+ * @author     Jimmy L <latour.jimmy@gmail.com>
  */
 class Plugin_Jungle_Admin_News {
 
@@ -68,7 +68,7 @@ class Plugin_Jungle_Admin_News {
             $dates[] = $this->random_date( $current_date, $two_weeks_before );
         }
 
-        shuffle($dates);
+        shuffle( $dates );
 
         return $dates;
     }
@@ -122,7 +122,6 @@ class Plugin_Jungle_Admin_News {
                 $post->post_date    = $dates[ $key ];
                 $post_id = wp_update_post( $post );
             } else {
-
                 $post_data = array(
                     'post_title'   => $post_title,
                     'post_name'    => $post_name,

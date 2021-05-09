@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Provide a admin area view for the plugin
+ * Silence is golden!
+ * 
+ * No need for this plugin.
  *
- * This file is used to markup the admin-facing aspects of the plugin.
- *
- * @link       http://example.com
+ * @link       http://jimmylatour.fr
  * @since      1.0.0
  *
  * @package    Plugin_Jungle
